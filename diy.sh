@@ -4,3 +4,7 @@
 # git clone --depth=1 https://github.com/EOYOHOO/rkp-ipid.git package/rkp-ipid
 # Modify default IP
 sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
+  ucidef_set_interface_wan() {
+    #dhcp改成pppoe
+    ucidef_set_interface "wan" ifname "$1" protocol "${2:-dhcp}"
+  }
